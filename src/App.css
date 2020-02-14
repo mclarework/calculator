@@ -1,7 +1,103 @@
-.App {
+body {
+  margin:0;
+}
+
+.app {
   display: grid;
   height: 100vh;
   width: 100vw;
-  margin: 0;
   grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.button {
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+}
+
+#zero {
+  grid-row-start: 2;
+  grid-column-start: 1;
+}
+
+#one {
+  grid-row-start: 5;
+  grid-column-start: 1;
+}
+
+#two {
+  grid-row-start: 5;
+  grid-column-start: 2;
+}
+
+#three {
+  grid-row-start: 5;
+  grid-column-start: 3;
+}
+
+#four {
+  grid-row-start: 4;
+  grid-column-start: 1;
+}
+
+#five {
+  grid-row-start: 4;
+  grid-column-start: 2;
+}
+
+#six {
+  grid-row-start: 4;
+  grid-column-start: 3;
+}
+
+#seven {
+  grid-row-start: 3;
+  grid-column-start: 1;
+}
+
+#eight {
+  grid-row-start: 3;
+  grid-column-start: 2;
+}
+
+#nine {
+  grid-row-start: 3;
+  grid-column-start: 3;
+}
+
+#equals {
+  grid-row-start: 2;
+  grid-column-start: 3;
+}
+
+#plus {
+  grid-row-start: 4;
+  grid-column-start: 4;
+}
+
+#minus {
+  grid-row-start: 5;
+  grid-column-start: 4;
+}
+
+#times {
+  grid-row-start: 2;
+  grid-column-start: 4;
+}
+
+#divide {
+  grid-row-start: 3;
+  grid-column-start: 4;
+}
+
+#clear {
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+
+#screen {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
