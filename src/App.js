@@ -1,50 +1,60 @@
 import React, {Component} from 'react';
-import './App.css';
+import Button from './components/Button';
+import Screen from './components/Screen';
+import './css/App.css';
 
 class App extends Component {
   state = {
-    result: ""
+    buttons: ["0","1","2","3","4","5","6","7","8","9","+","-","x","÷","=","CLEAR"],
+    input: ""
   }
 
-
+  button =(event)=> {
+    if (event.target.id === "CLEAR") {
+      this.setState({input:""})
+    }else if (event.target.id === "=") {
+      let temp = this.state.input
+      temp = temp.split("")
+      let i
+      for (i = 0; i < temp.length; i++ ) {
+        if (temp[i] === "x") {
+          temp[i] = "*"
+        }
+      }
+      for (i = 0; i < temp.length; i++ ) {
+        if (temp[i] === "÷") {
+          temp[i] = "/"
+        }
+      }
+      temp.join("")
+      console.log(temp)
+      let answer = eval(this.state.input)
+      console.log(temp)
+      this.setState({input:answer})
+    }else if (this.state.input !== "") {
+      let temp = this.state.input.concat(event.target.id)
+      this.setState({input:temp})
+    }else{
+      let temp
+      temp = event.target.id
+      this.setState({input:temp})
+    }
+  }
 
   render() {
     return(
       <div className = "app">
-        <Button id = "zero" number = "0" click={()=> this.input(0)}/>
-        <Button id = "one" number = "1" click={()=> this.input(1)}/>
-        <Button id = "two" number = "2" click={()=> this.input(2)}/>
-        <Button id = "three" number = "3" click={()=> this.input(3)}/>
-        <Button id = "four" number = "4" click={()=> this.input(4)}/>
-        <Button id = "five" number = "5" click={()=> this.input(5)}/>
-        <Button id = "six" number = "6" click={()=> this.input(6)}/>
-        <Button id = "seven" number = "7" click={()=> this.input(7)}/>
-        <Button id = "eight" number = "8" click={()=> this.input(8)}/>
-        <Button id = "nine" number = "9" click={()=> this.input(9)}/>
-        <Button id = "equals" number = "=" click={this.total}/>
-        <Button id = "plus" number = "+" click={this.add}/>
-        <Button id = "minus" number = "-"/>
-        <Button id = "times" number = "x"/>
-        <Button id = "divide" number = "÷"/>
-        <Button id = "clear" number = "CLEAR" click={this.clearScreen}/>
-        <Screen id = "screen" value = {this.state.value}/>
+        <Screen input = {this.state.input}/>
+        {this.state.buttons.map((info,index)=> {
+          return (
+            <div key = {index}>
+              <Button info = {info} click = {this.button}/>
+            </div>
+          )
+        })}
       </div>
     )
   }
-}
-
-const Button = (props) => {
-  return (
-    <button className = "button" id = {props.id} onClick = {props.click}>
-      <h1>{props.number}</h1>
-    </button>
-  )
-}
-
-const Screen = (props) => {
-  return (
-    <h1 id = {props.id}>{props.value}</h1>
-  )
 }
 
 export default App;
